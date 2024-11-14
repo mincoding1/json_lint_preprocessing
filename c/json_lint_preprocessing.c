@@ -6,6 +6,8 @@ char stack[10'000'000] = { 0 };
 void preprocessing(const char fileName[50]);
 
 int main() {
+	
+	//경로를 본인에게 맞게 수정 필요.
 	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input1.json");
 	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input2.json");
 	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input3.json");
