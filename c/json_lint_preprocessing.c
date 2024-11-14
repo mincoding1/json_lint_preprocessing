@@ -3,12 +3,24 @@
 
 char buf[10'000'000] = { 0 };
 char stack[10'000'000] = { 0 };
+void preprocessing(const char fileName[50]);
 
-void inputFile(char* fileName) {
-	
+int main() {
+	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input1.json");
+	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input2.json");
+	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input3.json");
+	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input4.json");
+}
+
+int inputFile(char* fileName) {
+	int result = 1;
+
 	FILE* fp;
-	fopen_s(&fp, fileName, "r");
-	
+	if (fopen_s(&fp, fileName, "r") != 0) {
+		printf("ERROR :: 파일 경로가 잘못되었습니다.\n");
+		goto EXIT_FAIL;
+	}
+
 	char ch;
 	int n = 0;
 	memset(buf, 0, sizeof(buf));
@@ -18,6 +30,11 @@ void inputFile(char* fileName) {
 	}
 
 	fclose(fp);
+
+	return 0;
+
+EXIT_FAIL:
+	return result;
 }
 
 int step1() {
@@ -194,7 +211,7 @@ int step5() {
 			buf[a] = buf[i];
 			a++;
 		}
-		
+
 		for (int i = a; i < size; i++) {
 			buf[i] = 0;
 		}
@@ -230,7 +247,7 @@ int step6() {
 		if (buf[i] >= 'A' && buf[i] <= 'Z') {
 			printf("ERROR :: 대문자가 존재할 수 없습니다.\n");
 			goto EXIT_FAIL;
-		}		
+		}
 	}
 
 	return 0;
@@ -277,7 +294,7 @@ int step7() {
 		int size = strlen(buf);
 
 		for (int i = 0; i < size - 5; i++) {
-			if ((buf[i] == 't' && buf[i + 1] == 'r' && buf[i + 2] == 'u' && buf[i + 3] == 'e') || 
+			if ((buf[i] == 't' && buf[i + 1] == 'r' && buf[i + 2] == 'u' && buf[i + 3] == 'e') ||
 				(buf[i] == 'n' && buf[i + 1] == 'u' && buf[i + 2] == 'l' && buf[i + 3] == 'l')) {
 
 				buf[i] = 'V';
@@ -312,7 +329,7 @@ int step8() {
 	for (int i = 1; i < size - 1; i++) {
 		if (buf[i] == '.') {
 			if (buf[i - 1] >= '0' && buf[i - 1] <= '9' && buf[i + 1] >= '0' && buf[i + 1] <= '9') continue;
-			
+
 			printf("ERROR :: 소숫점 앞과 뒤에 숫자가 존재해야한다.\n");
 			goto EXIT_FAIL;
 		}
@@ -326,7 +343,7 @@ EXIT_FAIL:
 int step9() {
 	int result = 1;
 
-	
+
 	while (1) {
 		int flag = 0;
 		int size = strlen(buf);
@@ -459,7 +476,7 @@ int step13() {
 
 	//변경해야 할 것
 	//Str 이 Value로 쓰였다면, V로 변경
-	
+
 	int size = strlen(buf);
 	for (int i = 0; i < size - 1; i++) {
 		if (buf[i] == ':' && buf[i + 1] == 'S') buf[i + 1] = 'V'; // {S:S} --> {S:V}
@@ -618,7 +635,7 @@ void preprocessing(const char fileName[50]) {
 	int result = 1;
 
 	printf("[%s]\n", fileName);
-	inputFile(fileName);
+	if (inputFile(fileName)) goto EXIT_FAIL;
 
 	//{ } 개수가 맞는지 검사
 	if (step1()) goto EXIT_FAIL;
@@ -667,18 +684,9 @@ void preprocessing(const char fileName[50]) {
 	if (step15()) goto EXIT_FAIL;
 
 	printf("%s\n\n", buf);
-
 	return 0;
 
 EXIT_FAIL:
-	printf("ERROR로 프로그램을 종료합니다.\n");
+	printf("ERROR로 프로그램을 종료합니다.\n\n");
 	return result;
-}
-
-int main() {
-	preprocessing("input1.json");
-	preprocessing("input2.json");
-	preprocessing("input3.json");
-	preprocessing("input4.json");
-
 }
