@@ -6,21 +6,21 @@ char stack[10'000'000] = { 0 };
 void preprocessing(const char fileName[50]);
 
 int main() {
-	
+
 	//경로를 본인에게 맞게 수정 필요.
-	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input1.json");
-	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input2.json");
-	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input3.json");
-	preprocessing("C:\\Users\\user\\source\\repos\\Project22\\targetCode\\input4.json");
+	preprocessing("C:\\Users\\user\\source\\repos\\profiler\\target\\input1.json");
+	preprocessing("C:\\Users\\user\\source\\repos\\profiler\\target\\input2.json");
+	preprocessing("C:\\Users\\user\\source\\repos\\profiler\\target\\input3.json");
+	preprocessing("C:\\Users\\user\\source\\repos\\profiler\\target\\input4.json");
 }
 
-int inputFile(char* fileName) {
+int inputFile(const char* fileName) {
 	int result = 1;
 
-	FILE* fp;
+	FILE* fp = NULL;
 	if (fopen_s(&fp, fileName, "r") != 0) {
 		printf("ERROR :: 파일 경로가 잘못되었습니다.\n");
-		goto EXIT_FAIL;
+		return 0;
 	}
 
 	char ch;
@@ -32,11 +32,6 @@ int inputFile(char* fileName) {
 	}
 
 	fclose(fp);
-
-	return 0;
-
-EXIT_FAIL:
-	return result;
 }
 
 int step1() {
@@ -686,9 +681,8 @@ void preprocessing(const char fileName[50]) {
 	if (step15()) goto EXIT_FAIL;
 
 	printf("%s\n\n", buf);
-	return 0;
+	return;
 
 EXIT_FAIL:
 	printf("ERROR로 프로그램을 종료합니다.\n\n");
-	return result;
 }
