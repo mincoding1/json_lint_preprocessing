@@ -32,6 +32,7 @@ int inputFile(const char* fileName) {
 	}
 
 	fclose(fp);
+	return 0;
 }
 
 int step1() {
@@ -630,55 +631,84 @@ EXIT_FAIL:
 
 void preprocessing(const char fileName[50]) {
 	int result = 1;
-
+	int ret1 = 0;
+	int ret2 = 0;
+	int ret3 = 0;
+	int ret4 = 0;
+	int ret5 = 0;
+	int ret6 = 0;
+	int ret7 = 0;
+	int ret8 = 0;
+	int ret9 = 0;
+	int ret10 = 0;
+	int ret11 = 0;
+	int ret12 = 0;
+	int ret13 = 0;
+	int ret14 = 0;
+	int ret15 = 0;
 	printf("[%s]\n", fileName);
 	if (inputFile(fileName)) goto EXIT_FAIL;
 
 	//{ } 개수가 맞는지 검사
-	if (step1()) goto EXIT_FAIL;
+	ret1 = step1();
+	if (ret1) goto EXIT_FAIL;
 
 	//[ ] 개수가 맞는지 검사
-	if (step2()) goto EXIT_FAIL;
+	ret2 = step2();
+	if (ret2) goto EXIT_FAIL;
 
 	//첫 시작이 { 이거나 [ 이어야하고, 맨 끝이 ] 이거나 } 이어야한다.
-	if (step3()) goto EXIT_FAIL;
+	ret3 = step3();
+	if (ret3) goto EXIT_FAIL;
 
 	// 따옴표의 개수가 맞는지 검사
-	if (step4()) goto EXIT_FAIL;
+	ret4 = step4();
+	if (ret4) goto EXIT_FAIL;
 
 	// String 문자열을 모두 S 이라는 문자로 변경
-	if (step5()) goto EXIT_FAIL;
+	ret5 = step5();
+	if (ret5) goto EXIT_FAIL;
 
 	// S를 제외한 다른 대문자가 존재하면 안된다.
-	if (step6()) goto EXIT_FAIL;
+	ret6 = step6();
+	if (ret6) goto EXIT_FAIL;
 
 	// true, false, null 글자를 V라는 글자로 변경
-	if (step7()) goto EXIT_FAIL;
+	ret7 = step7();
+	if (ret7) goto EXIT_FAIL;
 
 	// 소수점 앞과 뒤에는 반드시 숫자가 존재하는지 검사
-	if (step8()) goto EXIT_FAIL;
+	ret8 = step8();
+	if (ret8) goto EXIT_FAIL;
 
 	// 소수점을 제거한다.
-	if (step9()) goto EXIT_FAIL;
+	ret9 = step9();
+	if (ret9) goto EXIT_FAIL;
 
 	// 수를 찾으면 V라는 문자로 변경한다.
-	if (step10()) goto EXIT_FAIL;
+	ret10 = step10();
+	if (ret10) goto EXIT_FAIL;
 
 	// 화이트스페이스 없애기 (공백, /t, /n, /r)
-	if (step11()) goto EXIT_FAIL;
+	ret11 = step11();
+	if (ret11) goto EXIT_FAIL;
 
 	// 허용되지 않는 문자가 있는지 검사
-	if (step12()) goto EXIT_FAIL;
+	ret12 = step12();
+	if (ret12) goto EXIT_FAIL;
 
 	// String 이 Value 자리에 있다면, S를 V로 변경
 	// String 이 Key 자리에 있다면, S를 K로 변경
-	if (step13()) goto EXIT_FAIL;
+	ret13 = step13();
+	if (ret13) goto EXIT_FAIL;
 
 	// 잘못된 순서 검사
-	if (step14()) goto EXIT_FAIL;
+	ret14 = step14();
+	if (ret14) goto EXIT_FAIL;
 
 	// 괄호 순서 검사
-	if (step15()) goto EXIT_FAIL;
+	ret15 = step15();
+	if (ret15) goto EXIT_FAIL;
 
 	printf("%s\n\n", buf);
 	return;
