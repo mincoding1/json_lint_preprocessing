@@ -4,16 +4,16 @@
 using namespace std;
 
 //============================================================================================================
-//[경로 Check 필요!] 다음 경로는 Project22 솔루션 일때 예시코드이다.
+//[경로 Check 필요!] 
 //============================================================================================================
 //빌드 프로그램 파일 경로 (MSBuild.exe)
 const string msbuild_path = R"(C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe)";
 
-//프로젝트 파일 경로 (targetCode.vcxproj)
-const string pjt_path = R"(C:\Users\user\source\repos\Project22\targetCode\targetCode.vcxproj)";
+//프로젝트 파일 경로 (target.vcxproj)
+const string pjt_path = R"(C:\Users\user\source\repos\profiler\target\target.vcxproj)";
 
-//빌드 후 실행해야 할 파일 경로 (targetCode.exe)
-const string exe_path = R"(C:\Users\user\source\repos\Project22\targetCode\Release\targetCode.exe)";
+//빌드 후 실행해야 할 파일 경로 (target.exe)
+const string exe_path = R"(C:\Users\user\source\repos\profiler\target\Release\target.exe)";
 //============================================================================================================
 
 void build() {
