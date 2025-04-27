@@ -1,17 +1,29 @@
-#include <stdio.h>
-#include <string.h>
+//=============================================================================================================================
+
+//솔루션 경로 (필요시 본인에게 맞게 경로 수정 필요)
+#define SOLUTION_PATH R"(C:\Users\minco\source\repos\Solution98\)"
+
+//=============================================================================================================================
+
+#include <cstdio>
+#include <cstring>
+#include <string>
 
 char buf[10'000'000] = { 0 };
 char stack[10'000'000] = { 0 };
 void preprocessing(const char fileName[50]);
 
 int main() {
+	const std::string solution_path = SOLUTION_PATH;
+	const std::string json_filepath1 = solution_path + R"(Target\input1.json)";
+	const std::string json_filepath2 = solution_path + R"(Target\input2.json)";
+	const std::string json_filepath3 = solution_path + R"(Target\input3.json)";
+	const std::string json_filepath4 = solution_path + R"(Target\input4.json)";
 
-	//경로를 본인에게 맞게 수정 필요.
-	preprocessing("C:\\Users\\user\\source\\repos\\profiler\\target\\input1.json");
-	preprocessing("C:\\Users\\user\\source\\repos\\profiler\\target\\input2.json");
-	preprocessing("C:\\Users\\user\\source\\repos\\profiler\\target\\input3.json");
-	preprocessing("C:\\Users\\user\\source\\repos\\profiler\\target\\input4.json");
+	preprocessing(json_filepath1.c_str());
+	preprocessing(json_filepath2.c_str());
+	preprocessing(json_filepath3.c_str());
+	preprocessing(json_filepath4.c_str());
 }
 
 int inputFile(const char* fileName) {
